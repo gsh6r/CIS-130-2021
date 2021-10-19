@@ -1,0 +1,44 @@
+package example.myapp.example.myapp
+
+interface FishAction {
+    fun eat()
+}
+
+interface FishColor {
+    val color: String
+}
+
+object GoldColor : FishColor {
+    override val color = "gold"
+}
+
+
+class Shark: FishAction, FishColor {
+    override val color = "grey"
+    override fun eat() {
+        println("hunt and eat fish")
+    }
+}
+
+class Plecostomus(fishColor : FishColor= GoldColor) :FishAction, FishColor by fishColor {
+    override val color = "gold"
+    override fun eat() {
+        println(" eat algae")
+    }
+}
+
+
+package example.myapp.example.myapp
+
+fun makeFish() {
+    val shark = Shark()
+    val pleco = Plecostomus()
+    println("Shark: ${shark.color}")
+    shark.eat()
+    println("Plecostomus: ${pleco.color}")
+    pleco.eat()
+}
+
+fun main() {
+    makeFish()
+}
